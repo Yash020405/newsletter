@@ -93,7 +93,7 @@ const App = () => {
         addLog('Sending thank you message');
       } else {
         await updateFlow(id, 'COMPLETED_FAILURE');
-        addLog('Customer did not renew after second reminder');
+        addLog('Customer did not renew after second reminder - No further action');
       }
       setIsRunning(false);
     } catch (error) {
