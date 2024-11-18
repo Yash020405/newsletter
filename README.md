@@ -13,6 +13,37 @@ A web application that simulates a newsletter renewal process. The system sends 
 - Visual flow representation
 - Activity logging
 
+## Flow Description
+1. First Reminder Stage
+   - Send initial renewal reminder
+   - Wait for customer response
+   - If renewed → Send thank you message and end flow
+   - If not renewed → Proceed to second reminder
+
+2. Second Reminder Stage
+   - Send second reminder
+   - Wait for customer response
+   - If renewed → Send thank you message and end flow
+   - If not renewed → Log "No further action" and end flow
+
+## Key Assumptions
+1. **Response Time**: 
+   - Simulated 3-second wait period for customer responses
+   - 2-second wait for thank you message delivery
+
+2. **Response Probability**:
+   - 50% chance of renewal at each stage
+   - Randomized using Math.random()
+
+3. **States**:
+   - `IDLE` - Initial state
+   - `FIRST_REMINDER` - First reminder sent
+   - `WAITING_FIRST` - Awaiting first response
+   - `SECOND_REMINDER` - Second reminder sent
+   - `WAITING_SECOND` - Awaiting second response
+   - `COMPLETED_SUCCESS` - Customer renewed
+   - `COMPLETED_FAILURE` - Customer declined
+
 
 ## Project Setup
 
@@ -70,25 +101,7 @@ A web application that simulates a newsletter renewal process. The system sends 
    # App should open on http://localhost:3000
    ```
 
-
-
-## Flow States
-1. `IDLE` - Initial state
-2. `FIRST_REMINDER` - First reminder sent
-3. `WAITING_FIRST` - Awaiting first response
-4. `SECOND_REMINDER` - Second reminder sent
-5. `WAITING_SECOND` - Awaiting second response
-6. `COMPLETED_SUCCESS` - Customer renewed
-7. `COMPLETED_FAILURE` - Customer declined
-
 ## API Endpoints
 - Start Flow: `POST /api/flows/start`
 - Update Flow: `PUT /api/flows/:flowId`
 - Get Flow: `GET /api/flows/:flowId`
-
-
-## License
-MIT
-
-## Author
-Yash Agarwal
